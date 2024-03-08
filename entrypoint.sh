@@ -4,21 +4,27 @@ set -e
 
 sleep 3
 
-case $(arch) in
-    x86_64) _ARCH="linux-64" ;;
-    aarch64) _ARCH="linux-aarch64" ;;
-    ppc64le) _ARCH="linux-ppc64le" ;;
-    *) echo "Unsupported architecture"; exit 1 ;;
-esac
+_ARCH=$(arch)
+DEV_PATH="/opt/dev"
+MINI_CONDA="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-${_ARCH}.sh" 
 
-MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest"
+curl -fsSL "$MINI_CONDA" -o /tmp/conda.sh
+chmod +x /tmp/conda.sh && sh /tmp/conda.sh -b -p "$DEV_PATH/conda"
 
-echo $MICRO_MAMBA
-curl -fsSL $MICRO_MAMBA | tar -xvj bin/micromamba
-mv bin/micromamba /usr/bin/mamba
-/usr/bin/mamba shell init -s bash -p /opt/dev/mamba
+cat <<EOF | tee -a "$HOME"/.bashrc
+# >>> conda initialize >>>
+    if test -f "$DEV_PATH/conda/etc/fish/conf.d/conda.fish"
+        . "$DEV_PATH/conda/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH "$DEV_PATH/conda/bin" $PATH
+    end
+# <<< conda initialize <<<
+EOF
+
+
+# /usr/bin/mamba shell init -s bash -p /opt/dev/mamba
 # . "$HOME/.bashrc"
 
-# micromamba create -n aii python=3.11 gradio -c conda-forge
+# micromamba -y create -n aii python=3.11 gradio -c conda-forge
 # micromamba activate aii
 exec "$@"
