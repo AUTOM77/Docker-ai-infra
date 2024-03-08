@@ -21,7 +21,7 @@ demo = gr.Interface(
     allow_flagging="never",
 )
 
-demo.launch(share=False, max_threads=30, server_port=9100)
+demo.launch(share=False, max_threads=30, server_name="0.0.0.0", server_port=9100)
 EOF
 
 case $(arch) in
