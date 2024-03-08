@@ -15,6 +15,8 @@
 doas podman run --name aii -p 9100:9100 -it monius/docker-ai-infra /bin/bash
 doas podman run --name aii -p 9100:9100 -itd monius/docker-ai-infra
 
+doas podman logs aii
+doas podman inspect -f '{{.NetworkSettings.IPAddress}}' aii
 doas podman rm -f $(doas podman ps -a -q)
 doas podman rmi -f $(doas podman images -a -q)
 ```
