@@ -1,0 +1,23 @@
+FROM debian:bookworm-slim
+
+ENV DEV_PATH="/opt/dev"
+ENV PKG="curl git bzip2"
+
+RUN apt-get -qq update \
+    && apt-get -qq install $PKG \
+    && apt-get -qq autoremove --purge && apt-get clean
+
+RUN \
+    case $(arch) in \
+        aarch64) _ARCH="linux-aarch64" ;; \
+        ppc64le) _ARCH="linux-ppc64le" ;; \
+        *) _ARCH="linux-64" ;; \
+    esac \
+    && MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest" \
+    && curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba \
+    && mv bin/micromamba /usr/bin/mamba \
+    && mamba shell init -s bash -p $DEV_PATH/mamba
+
+CMD ["/bin/bash"]
+
+RUN micromamba create -n aii python=3.11 gradio -c conda-forge -y

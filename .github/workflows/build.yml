@@ -33,6 +33,15 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          file: dev/BASE
+          push: true
+          platforms: linux/amd64, linux/arm64, linux/ppc64le
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-ai-infra:base
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
           file: ./Dockerfile
           push: true
           platforms: linux/amd64, linux/arm64, linux/ppc64le
