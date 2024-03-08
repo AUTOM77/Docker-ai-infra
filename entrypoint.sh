@@ -38,6 +38,6 @@ mv bin/micromamba /usr/bin/mamba
 mamba shell init -s bash -p $DEV_PATH/mamba
 . $HOME/.bashrc
 micromamba create -n aii python=3.11 gradio -c conda-forge -y
-# micromamba run -n aii python /opt/demo.py
+micromamba run -n aii python /opt/demo.py
 
 exec "$@"
