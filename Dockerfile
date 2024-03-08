@@ -11,4 +11,4 @@ ENTRYPOINT ["/run/entrypoint.sh"]
 
 EXPOSE 9100
 
-# CMD ["micromamba", "run", "-n", "aii", "python" , "/opt/demo.py"]
+CMD ["micromamba", "run", "-n", "aii", "python" , "/opt/demo.py"]
