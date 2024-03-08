@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-ENV PKG="curl git"
+ENV PKG="curl git bzip2"
 
 RUN apt-get -qq update \
     && apt-get -qq install $PKG \

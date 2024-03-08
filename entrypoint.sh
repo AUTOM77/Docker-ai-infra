@@ -15,7 +15,7 @@ MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest"
 
 echo $MICRO_MAMBA
 curl -fsSL $MICRO_MAMBA | tar -xvj bin/micromamba
-# mv bin/micromamba /usr/bin/mamba
+mv bin/micromamba /usr/bin/mamba
 # mamba shell init -s bash -p /opt/dev/mamba
 
 exec "$@"
