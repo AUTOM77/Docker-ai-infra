@@ -18,8 +18,8 @@ echo $MICRO_MAMBA
 curl -fsSL $MICRO_MAMBA | tar -xvj bin/micromamba
 mv bin/micromamba /usr/bin/mamba
 mamba shell init -s bash -p $DEV_PATH/mamba
-# . "$HOME/.bashrc"
 
 micromamba create -n aii python=3.11 gradio -c conda-forge -y
-micromamba activate aii
+# micromamba activate aii
+# micromamba run -n aii
 exec "$@"
