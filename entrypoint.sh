@@ -12,13 +12,13 @@ curl -fsSL "$MINI_CONDA" -o /tmp/conda.sh
 chmod +x /tmp/conda.sh && sh /tmp/conda.sh -b -p "$DEV_PATH/conda"
 
 cat <<EOF | tee -a "$HOME"/.bashrc
-# >>> conda initialize >>>
-    if test -f "$DEV_PATH/conda/etc/fish/conf.d/conda.fish"
-        . "$DEV_PATH/conda/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH "$DEV_PATH/conda/bin" $PATH
-    end
-# <<< conda initialize <<<
+
+if [ -f "$DEV_PATH/conda/etc/profile.d/conda.sh" ]; then
+    . "$DEV_PATH/conda/etc/profile.d/conda.sh"
+else
+    export PATH="$DEV_PATH/conda/bin:$PATH"
+fi
+
 EOF
 
 
