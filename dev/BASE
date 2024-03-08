@@ -21,7 +21,6 @@ RUN \
 # CMD ["/bin/bash"]
 
 RUN \
-    . $HOME/.bashrc  \
     && mamba install -y -n base -c conda-forge \
         python=3.11  \
         gradio \
