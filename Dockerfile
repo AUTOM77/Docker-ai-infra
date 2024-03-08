@@ -4,4 +4,4 @@ ENTRYPOINT ["/run/entrypoint.sh"]
 
 EXPOSE 9100
 
-CMD ["/bin/bash"]
+CMD ["micromamba"]
