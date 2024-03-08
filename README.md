@@ -14,6 +14,6 @@
 ```bash
 doas podman run --name aii -it monius/docker-ai-infra /bin/bash
 
-doas podman rm -f $(doas podman ps -a -q) 
+doas podman rm -f $(doas podman ps -a -q)
 doas podman rmi -f $(doas podman images -a -q)
 ```
