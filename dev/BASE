@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim
 
-ENV DEV_PATH="/opt/dev"
+ENV MAMBA_ROOT_PREFIX="/opt/dev"
 ENV PKG="curl git bzip2"
 
 RUN apt-get -qq update \
@@ -16,7 +16,7 @@ RUN \
     && MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest" \
     && curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba \
     && mv bin/micromamba /usr/bin/mamba
-    && mamba shell init -s bash -p $DEV_PATH/mamba
+    # && mamba shell init -s bash -p $DEV_PATH/mamba
 
 # CMD ["/bin/bash"]
 
