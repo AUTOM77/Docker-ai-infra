@@ -15,7 +15,9 @@ MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest"
 
 echo $MICRO_MAMBA
 curl -fsSL $MICRO_MAMBA | tar -xvj bin/micromamba
-mv bin/micromamba /usr/bin/mamba
-# mamba shell init -s bash -p /opt/dev/mamba
+mv bin/micromamba /usr/bin/micromamba
+micromamba shell init -s bash -p /opt/dev/micromamba
+. "$HOME/.bashrc"
 
+micromamba create -n aii python=3.11 gradio -c conda-forge
 exec "$@"
