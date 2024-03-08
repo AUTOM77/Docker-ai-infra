@@ -13,7 +13,7 @@
 
 ```bash
 doas podman run --name aii -it monius/docker-ai-infra /bin/bash
-doas podman run --name aii -p 9100:9100 -itd monius/docker-instant-ai
+doas podman run --name aii -p 9100:9100 -itd monius/docker-ai-infra
 
 doas podman rm -f $(doas podman ps -a -q)
 doas podman rmi -f $(doas podman images -a -q)
