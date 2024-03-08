@@ -1,0 +1,23 @@
+name: verify
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["build"]
+    types:
+      - completed
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      name: ${{ github.job }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - run: |
+          docker run --name AII -p 9100:9100 --restart=always -itd ${{ secrets.DOCKERHUB_USERNAME }}/docker-ai-infra
+
