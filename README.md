@@ -10,3 +10,10 @@
 > AI Infra with MicroMamba inside contrainer for: `linux/amd64`, `linux/arm64`, and `linux/ppc64le`;
 
 🚧 Building .. 🚧
+
+```bash
+doas podman run --name aii -it monius/docker-ai-infra /bin/bash
+
+doas podman rm -f $(doas podman ps -a -q) 
+doas podman rmi -f $(doas podman images -a -q)
+```
