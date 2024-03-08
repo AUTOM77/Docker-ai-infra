@@ -20,4 +20,6 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           docker run --name AII -p 9100:9100 --restart=always -itd ${{ secrets.DOCKERHUB_USERNAME }}/docker-ai-infra
+      - id: check
+        run: echo trace=$(curl -v -fsSL 127.0.0.1:9100) >> $GITHUB_OUTPUT
 
