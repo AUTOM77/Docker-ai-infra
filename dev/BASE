@@ -18,11 +18,11 @@ RUN \
     && mv bin/micromamba /usr/bin/mamba \
     && mamba shell init -s bash -p $DEV_PATH/mamba
 
-CMD ["/bin/bash"]
+# CMD ["/bin/bash"]
 
 RUN \
     . $HOME/.bashrc  \
-    && micromamba install -y -n base -c conda-forge \
+    && mamba install -y -n base -c conda-forge \
         python=3.11  \
         gradio \
-    && micromamba clean --all --yes
+    && mamba clean --all --yes
