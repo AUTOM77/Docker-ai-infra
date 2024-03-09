@@ -12,12 +12,11 @@ RUN \
         aarch64) _ARCH="linux-aarch64" ;; \
         ppc64le) _ARCH="linux-ppc64le" ;; \
         *) _ARCH="linux-64" ;; \
-    esac \
-    && MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest" \
-    && curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba \
-    && mv bin/micromamba /usr/bin/mamba
-
-RUN mamba install -y -n base -c conda-forge \
+    esac && \
+    MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest" && \
+    curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba && \
+    mv bin/micromamba /usr/bin/mamba && \
+    mamba install -y -n base -c conda-forge \
         python=3.11  \
-        gradio \
-    && mamba clean --all --yes
+        gradio && \
+    mamba clean --all --yes
