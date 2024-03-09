@@ -22,5 +22,3 @@ RUN \
         python=3.11  \
         gradio \
     && mamba clean --all --yes
-
-RUN mamba shell init -s bash
