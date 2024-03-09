@@ -4,3 +4,5 @@ COPY entrypoint.sh /run/entrypoint.sh
 ENTRYPOINT ["/run/entrypoint.sh"]
 
 EXPOSE 9100
+
+CMD ["mamba", "run", "python", "/opt/demo.py"]
