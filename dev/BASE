@@ -17,8 +17,7 @@ RUN \
     && curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba \
     && mv bin/micromamba /usr/bin/mamba
 
-RUN \
-    mamba install -y -n base -c conda-forge \
+RUN mamba install -y -n base -c conda-forge \
         python=3.11  \
         gradio \
     && mamba clean --all --yes
