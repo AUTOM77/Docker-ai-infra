@@ -4,7 +4,9 @@ set -e
 
 sleep 3
 
-cat <<EOF | tee /opt/demo.py
+if [ ! -e "/opt/run/app.py" ]; then
+
+cat <<EOF | tee /opt/run/app.py
 import gradio as gr
 
 _css = gr.Theme.from_hub("gradio/monochrome")
@@ -23,5 +25,6 @@ demo = gr.Interface(
 
 demo.launch(share=False, max_threads=30, server_name="0.0.0.0", server_port=9100)
 EOF
+fi
 
 exec "$@"

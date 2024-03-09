@@ -5,4 +5,4 @@ ENTRYPOINT ["/run/entrypoint.sh"]
 
 EXPOSE 9100
 
-CMD ["mamba", "run", "python", "/opt/demo.py"]
+CMD ["mamba", "run", "python", "/opt/run/app.py"]
