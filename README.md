@@ -11,6 +11,21 @@
 
 🚧 Building .. 🚧
 
+Host IFACE/IP 
+```bash
+podman_default='10.88.0.1'
+local_default='10.88.0.1'
+# _host=$(ip route | grep podman | awk '{print $7}')
+
+doas podman run --privileged -itd \
+    --name aii \
+    --group-add keep-groups \
+    -p $podman_default:9100:9100 \
+    -v ~/demo/:/opt/run/:ro \
+    -v /DATA:/opt/run/dataset:ro \
+    monius/docker-ai-infra
+```
+
 ```bash
 doas podman run --name aii -it monius/docker-ai-infra /bin/bash
 
