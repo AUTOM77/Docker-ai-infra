@@ -17,10 +17,12 @@ doas podman run --name aii -it monius/docker-ai-infra /bin/bash
 doas podman run --name aii -p 127.0.0.1:9100:9100 -itd monius/docker-ai-infra
 doas podman run --name aii -p 127.0.0.1:9100:9100 -it monius/docker-ai-infra /bin/bash
 
-doas podman run -itd \
+doas podman run --privileged -itd \
     --name aii \
+    --group-add keep-groups \
     -p 127.0.0.1:9100:9100 \
     -v ~/demo/:/opt/run/:ro \
+    -v /DATA:/opt/run/dataset:ro \
     monius/docker-ai-infra
 
 doas podman logs aii
