@@ -14,7 +14,7 @@
 Host IFACE/IP 
 ```bash
 podman_default='10.88.0.1'
-local_default='10.88.0.1'
+local_default='127.0.0.1'
 # _host=$(ip route | grep podman | awk '{print $7}')
 
 doas podman run --privileged -itd \
