@@ -11,11 +11,22 @@
 
 🚧 Building .. 🚧
 
-Host IFACE/IP 
+For basic,
 ```bash
 POD_DEFAULT='10.88.0.1'
 # _host=$(ip route | grep podman | awk '{print $7}')
 
+doas podman run -itd \
+    --name ai-infra \
+    -p $POD_DEFAULT:9100:9100 \
+    -v ~/demo/:/opt/run/:ro \
+    -v /DATA:/opt/run/dataset:ro \
+    monius/docker-ai-infra
+```
+
+If not works,
+```bash
+POD_DEFAULT='10.88.0.1'
 doas podman run --privileged -itd \
     --name aii \
     --group-add keep-groups \
