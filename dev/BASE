@@ -17,6 +17,6 @@ RUN \
     curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba && \
     mv bin/micromamba /usr/bin/mamba && \
     mamba install -y -n base -c conda-forge \
-        python=3.11  \
-        gradio && \
+        python=3.12 \
+        gradio fastapi hypercorn && \
     mamba clean --all --yes
