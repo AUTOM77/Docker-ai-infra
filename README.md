@@ -16,7 +16,7 @@ For basic,
 POD_DEFAULT='10.88.0.1'
 # _host=$(ip route | grep podman | awk '{print $7}')
 
-doas podman run -itd \
+doas podman run --restart=always -itd \
     --name ai-infra \
     -p $POD_DEFAULT:9100:9100 \
     -v ~/demo/:/opt/run/:ro \
