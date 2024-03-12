@@ -11,14 +11,11 @@
 
 🚧 Building .. 🚧
 
-For basic,
+For default with unix socket,
 ```bash
-POD_DEFAULT='10.88.0.1'
-# _host=$(ip route | grep podman | awk '{print $7}')
-
 doas podman run --restart=always -itd \
     --name ai-infra \
-    -p $POD_DEFAULT:9100:9100 \
+    -v /dev/shm/:/var/run/:rw \
     -v ~/demo/:/opt/run/:ro \
     -v /DATA:/opt/run/dataset:ro \
     monius/docker-ai-infra

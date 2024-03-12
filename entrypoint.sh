@@ -8,6 +8,7 @@ if [ ! -e "/opt/run/app.py" ]; then
 
 cat <<EOF | tee /opt/run/app.py
 import gradio as gr
+from fastapi import FastAPI
 
 _css = gr.Theme.from_hub("gradio/monochrome")
 
@@ -23,7 +24,8 @@ demo = gr.Interface(
     allow_flagging="never",
 )
 
-demo.launch(share=False, max_threads=30, server_name="0.0.0.0", server_port=9100)
+app = FastAPI()
+app = gr.mount_gradio_app(app, demo, path="/")
 EOF
 fi
 
