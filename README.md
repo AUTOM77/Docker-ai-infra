@@ -18,6 +18,7 @@ doas touch "$AI_SOCKET"
 
 doas podman run --restart=always -itd \
     --name ai-infra \
+    -e AI_SOCKET=$AI_SOCKET \
     -v $AI_SOCKET:$AI_SOCKET \
     -v ~/demo/:/opt/run/:ro \
     -v /DATA:/opt/run/dataset:ro \
