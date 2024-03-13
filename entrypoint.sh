@@ -29,4 +29,9 @@ app = gr.mount_gradio_app(app, demo, path="/")
 EOF
 fi
 
+if [ ! -e "/usr/bin/ai-infra" ]; then
+    echo "mamba run hypercorn -b unix:$AI_SOCKET -w 4 /opt/run/app:app" > /usr/bin/ai-infra
+    chmod +x /usr/bin/ai-infra
+fi
+
 exec "$@"
