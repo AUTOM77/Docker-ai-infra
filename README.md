@@ -15,7 +15,7 @@ For default with unix socket,
 ```bash
 doas podman run --restart=always -itd \
     --name ai-infra \
-    -v /dev/shm/:/var/run/:rw \
+    -v /dev/shm/:/dev/shm/:rw \
     -v ~/demo/:/opt/run/:ro \
     -v /DATA:/opt/run/dataset:ro \
     monius/docker-ai-infra
