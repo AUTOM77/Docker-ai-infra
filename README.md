@@ -19,8 +19,8 @@ doas podman run --restart=always -itd \
     --name ai-infra \
     -e AI_SOCKET=$AI_SOCKET \
     -v /dev/shm:/dev/shm:rw \
-    -v ~/demo:/opt/run:ro \
-    -v /DATA:/opt/run/dataset:ro \
+    -v ~/demo:/opt/run:rw \
+    -v /DATA:/opt/run/dataset:rw \
     monius/docker-ai-infra
 ```
 
