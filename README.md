@@ -25,7 +25,7 @@ If not works,
 ```bash
 POD_DEFAULT='10.88.0.1'
 doas podman run --privileged -itd \
-    --name aii \
+    --name ai-infra \
     --group-add keep-groups \
     -p $POD_DEFAULT:9100:9100 \
     -v ~/demo/:/opt/run/:ro \
@@ -34,21 +34,21 @@ doas podman run --privileged -itd \
 ```
 
 ```bash
-doas podman run --name aii -it monius/docker-ai-infra /bin/bash
-
-doas podman run --name aii -p 127.0.0.1:9100:9100 -itd monius/docker-ai-infra
-doas podman run --name aii -p 127.0.0.1:9100:9100 -it monius/docker-ai-infra /bin/bash
+doas podman run --name ai-infra -it monius/docker-ai-infra /bin/bash
+doas podman exec -it ai-infra /bin/bash
+doas podman run --name ai-infra -p 127.0.0.1:9100:9100 -itd monius/docker-ai-infra
+doas podman run --name ai-infra -p 127.0.0.1:9100:9100 -it monius/docker-ai-infra /bin/bash
 
 doas podman run --privileged -itd \
-    --name aii \
+    --name ai-infra \
     --group-add keep-groups \
     -p 127.0.0.1:9100:9100 \
     -v ~/demo/:/opt/run/:ro \
     -v /DATA:/opt/run/dataset:ro \
     monius/docker-ai-infra
 
-doas podman logs aii
-doas podman inspect -f '{{.NetworkSettings.IPAddress}}' aii
+doas podman logs ai-infra
+doas podman inspect -f '{{.NetworkSettings.IPAddress}}' ai-infra
 doas podman rm -f $(doas podman ps -a -q)
 doas podman rmi -f $(doas podman images -a -q)
 ```
