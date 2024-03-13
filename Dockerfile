@@ -5,4 +5,4 @@ ENTRYPOINT ["/run/entrypoint.sh"]
 
 EXPOSE 9100
 
-CMD ["mamba", "run", "hypercorn", "/opt/run/app:app", "--bind", "unix:/var/run/aii.sock"]
+CMD ["mamba", "run", "hypercorn", "/opt/run/app:app", "--bind", "unix:/dev/shm/aii.sock"]
