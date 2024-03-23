@@ -34,7 +34,7 @@ if [ ! -e "/usr/bin/ai-infra" ]; then
         # echo "mamba run hypercorn -b unix:$AI_SOCKET -w 4 /opt/run/app:app" > /usr/bin/ai-infra
         echo "mamba run hypercorn -b unix:$AI_SOCKET /opt/run/app:app" > /usr/bin/ai-infra
     else
-        echo "mamba run hypercorn -b '0.0.0.0:9100' --bind '[::]:9100' /opt/run/app:app" > /usr/bin/ai-infra
+        echo "mamba run hypercorn -b '[::]:9100' /opt/run/app:app" > /usr/bin/ai-infra
     fi
     chmod +x /usr/bin/ai-infra
 fi
