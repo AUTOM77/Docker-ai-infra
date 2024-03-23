@@ -17,6 +17,7 @@ RUN \
     mv bin/micromamba /usr/bin/mamba
 
 FROM debian:bookworm-slim
+ENV MAMBA_ROOT_PREFIX="/opt/dev"
 
 COPY --from=MAMBA /usr/bin/mamba /usr/bin/mamba
 
