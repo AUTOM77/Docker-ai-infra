@@ -1,6 +1,5 @@
-FROM debian:bookworm-slim
+FROM debian:bookworm-slim as MAMBA
 
-ENV MAMBA_ROOT_PREFIX="/opt/dev"
 ENV PKG="curl git bzip2"
 
 RUN apt-get -qq update \
@@ -15,8 +14,13 @@ RUN \
     esac && \
     MICRO_MAMBA="https://micro.mamba.pm/api/micromamba/${_ARCH}/latest" && \
     curl -fsSL "$MICRO_MAMBA" | tar -xvj bin/micromamba && \
-    mv bin/micromamba /usr/bin/mamba && \
-    mamba install -y -n base -c conda-forge \
+    mv bin/micromamba /usr/bin/mamba
+
+FROM debian:bookworm-slim
+
+COPY --from=MAMBA /usr/bin/mamba /usr/bin/mamba
+
+RUN mamba install -y -n base -c conda-forge \
         python=3.12 \
         gradio fastapi hypercorn && \
     mamba clean --all --yes
