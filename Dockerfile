@@ -1,6 +1,5 @@
 FROM monius/docker-ai-infra:base
 
-USER infra
 WORKDIR /opt/run
 
 RUN echo $WORKDIR
