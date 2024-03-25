@@ -1,13 +1,11 @@
 FROM monius/docker-ai-infra:base
 
-ARG USER=infra
-
+USER infra
 WORKDIR /opt/run
 
-COPY --chown=$USER entrypoint.sh /run/entrypoint.sh
+COPY --chown=infra entrypoint.sh /run/entrypoint.sh
 
-RUN useradd -m -s /bin/bash $USER && \
-    chown -R $USER:$USER $WORKDIR
+RUN echo $USER $WORKDIR
 
 ENTRYPOINT ["/run/entrypoint.sh"]
 
