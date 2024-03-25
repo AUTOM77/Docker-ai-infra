@@ -35,8 +35,6 @@ if [ ! -e "/usr/bin/ai-infra" ]; then
     else
         echo "mamba run hypercorn -b '[::]:9100' /opt/run/app:app"  > /usr/bin/ai-infra
     fi
-    mv /tmp/ai-infra /usr/bin/ai-infra
-    
 fi
 
 exec "$@"

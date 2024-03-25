@@ -63,4 +63,12 @@ sudo podman rmi -f $(sudo podman images -a -q)
 
 sudo podman run --name ai-infra -it monius/docker-ai-infra:base /bin/bash
 sudo podman run --name ai-infra -itd monius/docker-ai-infra /bin/bash
+
+sudo podman run --restart=always -itd \
+    --name ai-infra \
+    -e AI_SOCKET=/dev/shm/infra.sock \
+    -v /dev/shm:/dev/shm:rw \
+    monius/docker-ai-infra
+
+curl -GET --unix-socket /dev/shm/infra.sock http://localhost/io
 ```
