@@ -1,5 +1,6 @@
 FROM debian:bookworm-slim
 
+ENV USER infra
 ENV MAMBA_ROOT_PREFIX="/opt/dev"
 ENV PKG="curl git bzip2 sudo"
 
@@ -20,3 +21,15 @@ RUN \
         python=3.12 \
         gradio fastapi hypercorn && \
     mamba clean --all --yes
+
+RUN adduser --disabled-password --gecos "" $USER && \
+    echo "$USER ALL=(ALL) NOPASSWD:ALL" | tee -a /etc/sudoers.d/$USER
+
+RUN touch /usr/bin/ai-infra && \ 
+    chmod +x /usr/bin/ai-infra && \
+    chown -R "$USER:$USER" /usr/bin/ai-infra && \
+    mkdir -p /opt/run && \
+    chown -R "$USER:$USER" /opt/run
+    
+    
+
