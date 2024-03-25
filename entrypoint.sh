@@ -4,10 +4,7 @@ set -e
 
 sleep 3
 
-if [ ! -e "/opt/run/app.py" ]; then
-
-cat <<EOF | tee /opt/run/app.py
-import gradio as gr
+echo 'import gradio as gr
 from fastapi import FastAPI
 
 _css = gr.Theme.from_hub("gradio/monochrome")
@@ -26,7 +23,11 @@ demo = gr.Interface(
 
 app = FastAPI()
 app = gr.mount_gradio_app(app, demo, path="/")
-EOF
+' | tee /tmp/app.py
+
+
+if [ ! -e "/opt/run/app.py" ]; then
+    sudo mv /tmp/app.py /opt/run/app.py
 fi
 
 if [ ! -e "/usr/bin/ai-infra" ]; then
