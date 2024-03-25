@@ -25,6 +25,10 @@ app = FastAPI()
 app = gr.mount_gradio_app(app, demo, path="/")
 ' | tee /tmp/app.py
 
+if [ ! -e "/opt/run/app.py" ]; then
+    mv /tmp/app.py /opt/run/app.py
+fi
+
 echo "========= log: $USER ========="
 
 if [ ! -e "/usr/bin/ai-infra" ]; then
@@ -36,10 +40,6 @@ if [ ! -e "/usr/bin/ai-infra" ]; then
     fi
     mv /tmp/ai-infra /usr/bin/ai-infra
     chmod +x /usr/bin/ai-infra
-fi
-
-if [ ! -e "/opt/run/app.py" ]; then
-    mv /tmp/app.py /opt/run/app.py
 fi
 
 exec "$@"
