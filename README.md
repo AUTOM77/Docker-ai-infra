@@ -55,3 +55,9 @@ doas podman inspect -f '{{.NetworkSettings.IPAddress}}' ai-infra
 doas podman rm -f $(doas podman ps -a -q)
 doas podman rmi -f $(doas podman images -a -q)
 ```
+
+For Debian
+```bash
+sudo podman rm -f $(sudo podman ps -a -q)
+sudo podman rmi -f $(sudo podman images -a -q)
+```
