@@ -62,5 +62,5 @@ sudo podman rm -f $(sudo podman ps -a -q)
 sudo podman rmi -f $(sudo podman images -a -q)
 
 sudo podman run --name ai-infra -it monius/docker-ai-infra:base /bin/bash
-sudo podman run --name ai-infra -it monius/docker-ai-infra /bin/bash
+sudo podman run --name ai-infra -itd monius/docker-ai-infra /bin/bash
 ```

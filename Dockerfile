@@ -3,9 +3,9 @@ FROM monius/docker-ai-infra:base
 USER infra
 WORKDIR /opt/run
 
-COPY --chown=infra entrypoint.sh /run/entrypoint.sh
-
 RUN echo $USER $WORKDIR
+
+COPY entrypoint.sh /run/entrypoint.sh
 
 ENTRYPOINT ["/run/entrypoint.sh"]
 
