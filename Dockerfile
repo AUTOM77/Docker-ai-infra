@@ -1,13 +1,13 @@
 FROM monius/docker-ai-infra:base
 
-USER infra
+ARG USER=infra
+
 WORKDIR /opt/run
 
-COPY --chown=infra entrypoint.sh /run/entrypoint.sh
+COPY --chown=$USER entrypoint.sh /run/entrypoint.sh
 
-RUN sudo useradd -m -s /bin/bash -G sudo $USER && \
-        echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/$USER && \
-        sudo chown -R $USER:$USER $WORKDIR
+RUN useradd -m -s /bin/bash $USER && \
+    chown -R $USER:$USER $WORKDIR
 
 ENTRYPOINT ["/run/entrypoint.sh"]
 
