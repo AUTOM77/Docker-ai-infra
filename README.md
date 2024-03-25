@@ -76,5 +76,6 @@ sudo podman run -it \
     monius/docker-ai-infra \
     /bin/bash
 
-curl -GET --unix-socket /dev/shm/infra.sock http://localhost/io
+sudo curl -GET --unix-socket /dev/shm/infra.sock http://localhost/
+
 ```
