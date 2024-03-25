@@ -28,13 +28,11 @@ fi
 
 echo "========= log: $USER ========="
 
-if [ ! -e "/usr/bin/ai-infra" ]; then
-    if [ -n "$AI_SOCKET" ]; then
-        # echo "mamba run hypercorn -b unix:$AI_SOCKET -w 4 /opt/run/app:app" > /usr/bin/ai-infra
-        echo "mamba run hypercorn -b unix:$AI_SOCKET /opt/run/app:app" > /usr/bin/ai-infra
-    else
-        echo "mamba run hypercorn -b '[::]:9100' /opt/run/app:app"  > /usr/bin/ai-infra
-    fi
+if [ -n "$AI_SOCKET" ]; then
+    # echo "mamba run hypercorn -b unix:$AI_SOCKET -w 4 /opt/run/app:app" > /usr/bin/ai-infra
+    echo "mamba run hypercorn -b unix:$AI_SOCKET /opt/run/app:app" > /usr/bin/ai-infra
+else
+    echo "mamba run hypercorn -b '[::]:9100' /opt/run/app:app"  > /usr/bin/ai-infra
 fi
 
 exec "$@"
