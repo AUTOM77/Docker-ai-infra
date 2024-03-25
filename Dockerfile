@@ -3,7 +3,7 @@ FROM monius/docker-ai-infra:base
 USER infra
 WORKDIR /opt/run
 
-RUN echo $USER
+RUN echo $WORKDIR
 
 COPY entrypoint.sh /run/entrypoint.sh
 
