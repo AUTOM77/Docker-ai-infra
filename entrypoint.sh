@@ -34,12 +34,12 @@ if [ ! -e "/usr/bin/ai-infra" ]; then
     else
         echo "mamba run hypercorn -b '[::]:9100' /opt/run/app:app"  > /tmp/ai-infra
     fi
-    sudo mv /tmp/ai-infra /usr/bin/ai-infra
-    sudo chmod +x /usr/bin/ai-infra
+    mv /tmp/ai-infra /usr/bin/ai-infra
+    chmod +x /usr/bin/ai-infra
 fi
 
 if [ ! -e "/opt/run/app.py" ]; then
-    sudo mv /tmp/app.py /opt/run/app.py
+    mv /tmp/app.py /opt/run/app.py
 fi
 
 exec "$@"
