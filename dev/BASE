@@ -19,7 +19,7 @@ RUN \
     mv bin/micromamba /usr/bin/mamba && \
     mamba install -y -n base -c conda-forge \
         python=3.12 \
-        gradio fastapi hypercorn requests && \
+        gradio fastapi hypercorn && \
     mamba clean --all --yes
 
 RUN adduser --disabled-password --gecos "" $USER && \
