@@ -2,7 +2,7 @@
 
 set -e
 
-sleep 3
+sleep 5
 
 if [ ! -e "/opt/run/app.py" ]; then
 echo 'import gradio as gr
