@@ -29,7 +29,6 @@ RUN touch /usr/bin/ai-infra && \
     chmod +x /usr/bin/ai-infra && \
     chown -R "$USER:$USER" /usr/bin/ai-infra && \
     mkdir -p /opt/run && \
-    chown -R "$USER:$USER" /opt/run
-    
-    
+    chown -R "$USER:$USER" /opt/run && \
+    touch /opt/run/ai-infra.txt
 
