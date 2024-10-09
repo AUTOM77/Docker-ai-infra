@@ -8,10 +8,17 @@ if [ ! -e "/opt/run/app.py" ]; then
 echo 'import gradio as gr
 from fastapi import FastAPI
 
-_css = gr.Theme.from_hub("gradio/monochrome")
+css="""
+footer {
+    visibility: hidden;
+}
+"""
+
+_theme = gr.themes.Ocean()
 
 demo = gr.Interface(
-    theme=_css,
+    css=css,
+    theme=_theme,
     fn=lambda x: x,
     title="3D(Demo)",
     inputs=gr.Model3D(label="Input"),
